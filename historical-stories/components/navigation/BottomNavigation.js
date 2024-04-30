@@ -4,10 +4,12 @@ import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
 import FeaturedScreen from "../../screens/featured/FeaturedScreen";
 import SearchScreen from "../../screens/search/SearchScreen";
 import PersonalScreen from "../../screens/personal/PersonalScreen";
+import { color } from "react-native-elements/dist/helpers";
+import Colors from "../../assets/colors";
+import StoryProfileScreen from "../../screens/search/StoryProfileScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,6 +31,11 @@ const SearchStack = () => (
       options={{ headerShown: false }}
       component={SearchScreen}
     />
+    <Stack.Screen
+      name="StoryProfileScreen"
+      options={{ headerShown: false }}
+      component={StoryProfileScreen}
+    />
   </Stack.Navigator>
 );
 
@@ -44,13 +51,24 @@ const PersonalStack = () => (
 
 const BottomNavigation = () => {
   return (
-    <Tab.Navigator screenOptions={{ tabBarPosition: "bottom" }}>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarPosition: "bottom",
+        headerTintColor: "white",
+        headerStyle: {
+          backgroundColor: Colors.background,
+        },
+        tabBarStyle: { backgroundColor: Colors.background },
+        tabBarActiveTintColor: Colors.active,
+        tabBarInactiveTintColor: "white",
+      }}
+    >
       <Tab.Screen
         name="Featured"
         component={FeaturedStack}
         options={{
           tabBarIcon: ({ size }) => (
-            <MaterialCommunityIcons name="star" color="black" size={size} />
+            <MaterialCommunityIcons name="star" color="white" size={size} />
           ),
         }}
       />
@@ -59,7 +77,11 @@ const BottomNavigation = () => {
         component={SearchStack}
         options={{
           tabBarIcon: ({ size }) => (
-            <MaterialCommunityIcons name="card-search" size={size} />
+            <MaterialCommunityIcons
+              name="card-search"
+              color="white"
+              size={size}
+            />
           ),
         }}
       />
@@ -68,19 +90,12 @@ const BottomNavigation = () => {
         component={PersonalStack}
         options={{
           tabBarIcon: ({ size }) => (
-            <MaterialCommunityIcons name="account" color="black" size={size} />
+            <MaterialCommunityIcons name="account" color="white" size={size} />
           ),
         }}
       />
     </Tab.Navigator>
   );
 };
-
-// const styles = StyleSheet.create({
-//   bottomNav: {
-//     justifyContent: "center",
-//     color: "black",
-//   },
-// });
 
 export default BottomNavigation;

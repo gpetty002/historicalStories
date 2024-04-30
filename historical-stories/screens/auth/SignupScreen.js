@@ -7,6 +7,7 @@ import InputBox from "../../components/auth/InputBox";
 import AnimatedCircles from "../../components/auth/AnimatedCircles";
 
 const SignupScreen = ({ navigation }) => {
+  const [username] = React.useState("");
   const [email] = React.useState("");
   const [password] = React.useState("");
 
@@ -40,7 +41,7 @@ const SignupScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.login,
     color: Colors.text,
   },
   container: {

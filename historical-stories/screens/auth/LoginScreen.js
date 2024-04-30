@@ -43,7 +43,7 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.login,
   },
   container: {
     marginTop: 280,

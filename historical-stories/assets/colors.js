@@ -7,7 +7,12 @@
 const Colors = {
   primary: "#A882DD", // lavendar floral
   secondary: "#7962A5", // royal purple
-  background: "#49416D", // english violet
+  active: "#5068b5",
+  background: "#1D233B",
+  searchBar: "#303964",
+  searchBarInput: "#1D233B",
+  login: "#362d42", // english violet
+  loginCircles: "#7962A5",
   text: "#E0EFDE", // honeydew
 };
 

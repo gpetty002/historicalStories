@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
   circle: {
     position: "absolute",
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.loginCircles,
   },
 });
 
