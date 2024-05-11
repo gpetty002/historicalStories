@@ -22,12 +22,9 @@ const SignupScreen = ({ navigation }) => {
       <View style={styles.container}>
         <AnimatedCircles></AnimatedCircles>
         <Text style={styles.title}>Welcome to Historical Stories</Text>
-        <Text style={styles.subheading}>Sign up to get started</Text>
-        <InputBox
-          style={styles.textBox}
-          emailChange={email}
-          passwordChange={password}
-        ></InputBox>
+        <InputBox inputChange={username} label={"Username"}></InputBox>
+        <InputBox inputChange={email} label={"Email"}></InputBox>
+        <InputBox inputChange={password} label={"Password"}></InputBox>
         <Button
           title="Sign up"
           color={Colors.text}

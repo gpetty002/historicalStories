@@ -4,36 +4,17 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 
-const InputBox = ({ emailChange, passwordChange }) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+const InputBox = ({ inputChange, label }) => {
+  const [input, setInput] = React.useState("");
 
   return (
     <View style={styles.container}>
       <TextInput
-        label="Email"
-        value={email}
+        label={label}
+        value={input}
         onChangeText={(email) => {
-          setEmail(email);
-          emailChange(email);
-        }}
-        theme={{
-          colors: {
-            primary: "blue",
-            background: "transparent",
-            placeholder: "gray",
-            text: "black",
-            error: "red",
-          },
-        }}
-        style={styles.textBoxes}
-      ></TextInput>
-      <TextInput
-        label="Password"
-        value={password}
-        onChangeText={(password) => {
-          setPassword(password);
-          passwordChange(password);
+          setInput(input);
+          inputChange(input);
         }}
         theme={{
           colors: {
@@ -54,14 +35,13 @@ const styles = StyleSheet.create({
   container: {
     marginLeft: 40,
     marginRight: 40,
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: 15,
+    marginBottom: 5,
     alignContent: "center",
   },
   textBoxes: {
     backgroundColor: "white", // Change input box background color
     borderRadius: 10, // Apply border radius
-    marginTop: 10, // Apply margin
   },
 });
 

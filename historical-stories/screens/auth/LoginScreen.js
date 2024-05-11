@@ -20,11 +20,8 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.container}>
         <AnimatedCircles></AnimatedCircles>
         <Text style={styles.title}>Historical Stories</Text>
-        <InputBox
-          style={styles.textBox}
-          emailChange={email}
-          passwordChange={password}
-        ></InputBox>
+        <InputBox inputChange={email} label={"Email"}></InputBox>
+        <InputBox inputChange={password} label={"Password"}></InputBox>
         <Button
           title="New to Historical Stories? Sign up"
           onPress={() => navigation.navigate("SignupScreen")}
