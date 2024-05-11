@@ -7,6 +7,7 @@ import LoginScreen from "./screens/auth/LoginScreen";
 import SignupScreen from "./screens/auth/SignupScreen";
 import NavigationScreen from "./screens/NavigationScreen";
 import React from "react";
+import "react-native-get-random-values";
 
 const Stack = createStackNavigator();
 

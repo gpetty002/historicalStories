@@ -3,10 +3,13 @@
 import React, { useState } from "react";
 import { Button, View, Text, StyleSheet } from "react-native";
 import Colors from "../../assets/colors";
+import connectDB from "../../server/config/db";
 
 const FeaturedScreen = ({ navigation }) => {
   const [username, setUsername] = useState("goofyGoober1");
   const [lastRead, setLastRead] = useState("Mar 20 2024");
+
+  connectDB();
 
   return (
     <View style={styles.container}>
