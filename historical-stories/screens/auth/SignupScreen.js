@@ -7,14 +7,35 @@ import InputBox from "../../components/auth/InputBox";
 import AnimatedCircles from "../../components/auth/AnimatedCircles";
 
 const SignupScreen = ({ navigation }) => {
-  const [username] = React.useState("");
-  const [email] = React.useState("");
-  const [password] = React.useState("");
+  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [signupFail, setSignupFail] = React.useState(false);
 
-  const handleSignup = (email, password) => {
+  const handleSignup = (username, email, password) => {
     // Confirm signup with database
 
-    navigation.navigate("NavigationScreen");
+    fetch(`http://localhost:8000/signup`, {
+      method: "POST",
+      body: JSON.stringify({ username, email, password }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to send response for sign up");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("User created ", data);
+        navigation.navigate("NavigationScreen", { userData: data });
+      })
+      .catch((error) => {
+        console.log("Error creating user on frontend", error);
+        setSignupFail(true);
+      });
   };
 
   return (
@@ -22,14 +43,32 @@ const SignupScreen = ({ navigation }) => {
       <View style={styles.container}>
         <AnimatedCircles></AnimatedCircles>
         <Text style={styles.title}>Welcome to Historical Stories</Text>
-        <InputBox inputChange={username} label={"Username"}></InputBox>
-        <InputBox inputChange={email} label={"Email"}></InputBox>
-        <InputBox inputChange={password} label={"Password"}></InputBox>
+        <InputBox
+          value={username}
+          onChangeText={setUsername}
+          label={"Username"}
+        ></InputBox>
+        <InputBox
+          value={email}
+          onChangeText={setEmail}
+          label={"Email"}
+        ></InputBox>
+        <InputBox
+          value={password}
+          onChangeText={setPassword}
+          label={"Password"}
+          isHidden={true}
+        ></InputBox>
         <Button
           title="Sign up"
           color={Colors.text}
-          onPress={handleSignup}
+          onPress={() => handleSignup(username, email, password)}
         ></Button>
+        {signupFail && (
+          <Text style={{ color: "red", textAlign: "center" }}>
+            Try signing in again!
+          </Text>
+        )}
       </View>
     </View>
   );

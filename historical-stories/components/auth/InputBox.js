@@ -4,18 +4,15 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 
-const InputBox = ({ inputChange, label }) => {
-  const [input, setInput] = React.useState("");
-
+const InputBox = ({ value, onChangeText, label, isHidden = false }) => {
   return (
     <View style={styles.container}>
       <TextInput
         label={label}
-        value={input}
-        onChangeText={(email) => {
-          setInput(input);
-          inputChange(input);
-        }}
+        value={value}
+        onChangeText={onChangeText}
+        autoCapitalize="none"
+        secureTextEntry={isHidden}
         theme={{
           colors: {
             primary: "blue",

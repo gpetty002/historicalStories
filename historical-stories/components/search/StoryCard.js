@@ -1,7 +1,7 @@
 // StoryCard.js
 
 import React from "react";
-import { Button, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-elements";
 import Colors from "../../assets/colors";
 

@@ -1,7 +1,7 @@
 // SearchScreen.js
 
 import React, { useState } from "react";
-import { Button, View, Text, StyleSheet, ScrollView } from "react-native";
+import { Button, View, StyleSheet, ScrollView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SearchBar } from "react-native-elements";
 import StoryGenres from "../../assets/search/StoryGenres";
@@ -17,6 +17,12 @@ const SearchScreen = ({ navigation }) => {
 
   const goToGenre = (genreName) => {
     navigation.navigate("StoryProfileScreen", { genre: genreName });
+  };
+
+  const error = console.error;
+  console.error = (...args: any) => {
+    if (/defaultProps/.test(args[0])) return;
+    error(...args);
   };
 
   return (

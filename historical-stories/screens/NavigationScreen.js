@@ -1,11 +1,11 @@
 // NavigationScreen.js
 
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import BottomNavigation from "../components/navigation/BottomNavigation";
-import Colors from "../assets/colors";
 
-const NavigationScreen = () => {
+const NavigationScreen = ({ route }) => {
+  const { userData } = route.params;
   return (
     <View
       style={{
@@ -13,7 +13,7 @@ const NavigationScreen = () => {
         justifyContent: "flex-end",
       }}
     >
-      <BottomNavigation></BottomNavigation>
+      <BottomNavigation route={userData}></BottomNavigation>
     </View>
   );
 };

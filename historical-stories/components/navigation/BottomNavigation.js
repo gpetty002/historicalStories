@@ -7,29 +7,30 @@ import { createStackNavigator } from "@react-navigation/stack";
 import FeaturedScreen from "../../screens/featured/FeaturedScreen";
 import SearchScreen from "../../screens/search/SearchScreen";
 import PersonalScreen from "../../screens/personal/PersonalScreen";
-import { color } from "react-native-elements/dist/helpers";
 import Colors from "../../assets/colors";
 import StoryProfileScreen from "../../screens/search/StoryProfileScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const FeaturedStack = () => (
+const FeaturedStack = ({ route }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="FeaturedScreen"
       component={FeaturedScreen}
       options={{ headerShown: false }}
+      initialParams={route.params}
     />
   </Stack.Navigator>
 );
 
-const SearchStack = () => (
+const SearchStack = ({ route }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="SearchScreen"
       options={{ headerShown: false }}
       component={SearchScreen}
+      initialParams={route.params}
     />
     <Stack.Screen
       name="StoryProfileScreen"
@@ -39,17 +40,18 @@ const SearchStack = () => (
   </Stack.Navigator>
 );
 
-const PersonalStack = () => (
+const PersonalStack = ({ route }) => (
   <Stack.Navigator>
     <Stack.Screen
       name="PersonalScreen"
       options={{ headerShown: false }}
       component={PersonalScreen}
+      initialParams={route.params}
     />
   </Stack.Navigator>
 );
 
-const BottomNavigation = () => {
+const BottomNavigation = ({ route }) => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -66,6 +68,7 @@ const BottomNavigation = () => {
       <Tab.Screen
         name="Featured"
         component={FeaturedStack}
+        initialParams={route.params}
         options={{
           tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons name="star" color="white" size={size} />
@@ -75,6 +78,7 @@ const BottomNavigation = () => {
       <Tab.Screen
         name="Search"
         component={SearchStack}
+        initialParams={route.params}
         options={{
           tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons
@@ -88,6 +92,7 @@ const BottomNavigation = () => {
       <Tab.Screen
         name="Personal"
         component={PersonalStack}
+        initialParams={route.params}
         options={{
           tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons name="account" color="white" size={size} />

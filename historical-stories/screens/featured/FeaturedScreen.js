@@ -1,21 +1,46 @@
 // FeaturedScreen.js
 
-import React, { useState } from "react";
-import { Button, View, Text, StyleSheet } from "react-native";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 import Colors from "../../assets/colors";
-import connectDB from "../../server/config/db";
 
-const FeaturedScreen = ({ navigation }) => {
-  const [username, setUsername] = useState("goofyGoober1");
-  const [lastRead, setLastRead] = useState("Mar 20 2024");
+const FeaturedScreen = ({ route }) => {
+  const [userData, setUserData] = React.useState(null);
 
-  connectDB();
+  React.useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = () => {
+    if (!route.params) {
+      setUserData({ username: "goofyGoober1", dateLastRead: Date.now() });
+    }
+    console.log(route.params);
+
+    fetch(`http://localhost:8000/userData`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to get user data");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUserData(data);
+      })
+      .catch((error) => {
+        console.log("Error getting data on featured screen", error);
+      });
+  };
+
+  const formattedDate = new Date(userData.dateLastRead).toLocaleDateString();
 
   return (
     <View style={styles.container}>
       <View style={styles.welcomeContainer}>
-        <Text style={styles.welcomeHeading}>Welcome back, {username}!</Text>
-        <Text style={styles.readStats}>You last read on: {lastRead} </Text>
+        <Text style={styles.welcomeHeading}>
+          Welcome back, {userData && userData.username}!
+        </Text>
+        <Text style={styles.readStats}>You last read on: {formattedDate}</Text>
         <Text style={styles.readStats}>
           Put analytical chart here for future
         </Text>
