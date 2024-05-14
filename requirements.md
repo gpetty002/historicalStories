@@ -47,3 +47,11 @@ I'm trying to figure out why Login doesn't work like Signup. They both deal with
 They're on the same server as the back end too and I'm using the correct local host domain and port.
 
 I will keep comparing and researching why its not reaching the login's endpoint.
+
+#### 13 May 2024
+
+I'm able to get through the login screen. My endpoint is working. I had everything correct the day before but I think I needed to restart my server and client sides. Once I came back the next day, the data passed through the routes just fine.
+
+I am having a new issue however. I am now unable to simply render the user's username using the data I passed through with route.params. All of the data shows up correctly. Its all there. Its now just parsing the data.
+
+I have a feeling that the issue has to do with some async call or the logic behind the screen having to render first. I think the screen is rendering but is unable to get the data passed through in time. Almost like there's a delay that is preventing the data from updating in time with the rendering of the screen. I need to figure out how to use the async calls correctly to avoid this issue.

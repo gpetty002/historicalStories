@@ -28,7 +28,7 @@ const LoginScreen = ({ navigation }) => {
         return response.json();
       })
       .then((data) => {
-        navigation.navigate("NavigationScreen", { userData: data });
+        navigation.navigate("NavigationScreen", { route: data });
       })
       .catch((error) => {
         console.log("Error getting data through login screen", error);

@@ -12,33 +12,39 @@ const FeaturedScreen = ({ route }) => {
   }, []);
 
   const fetchUserData = () => {
-    if (!route.params) {
+    if (route.params) {
+      setUserData(route.params);
+    } else {
       setUserData({ username: "goofyGoober1", dateLastRead: Date.now() });
     }
-    console.log(route.params);
-
-    fetch(`http://localhost:8000/userData`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to get user data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setUserData(data);
-      })
-      .catch((error) => {
-        console.log("Error getting data on featured screen", error);
-      });
   };
 
-  const formattedDate = new Date(userData.dateLastRead).toLocaleDateString();
+  React.useEffect(() => {
+    const username = userData ? userData.username : "undefined";
+    console.log(username);
+  }, [userData]);
+
+  /*
+
+  this is route.params
+  {"route": {"__v": 0, "_id": "6641897de9b16e562c64018a", "bookmarkedStories": [], "dateCreated": "2024-05-13T03:31:09.162Z", "dateLastRead": "2024-05-13T03:31:09.162Z", "email": "lol@gmail.com", "likedGenres": [], "password": "soccer", "username": "dogggggg"}}
+
+  */
+
+  console.log(userData);
+  const username = route.params["username"];
+  console.log(username); // this prints out undefined even though route.params is something
+
+  const formattedDate =
+    userData && userData.dateLastRead
+      ? new Date(userData.dateLastRead).toLocaleDateString()
+      : new Date().toLocaleDateString();
 
   return (
     <View style={styles.container}>
       <View style={styles.welcomeContainer}>
         <Text style={styles.welcomeHeading}>
-          Welcome back, {userData && userData.username}!
+          Welcome back, {userData?.username}!
         </Text>
         <Text style={styles.readStats}>You last read on: {formattedDate}</Text>
         <Text style={styles.readStats}>
