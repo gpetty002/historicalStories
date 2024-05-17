@@ -3,7 +3,7 @@
 ### Languages and frameworks
 
 - Front end: React Native
-- Back end: Express.js
+- Back end: Express.js, Axios, Flask
 - Database: MongoDB
 
 ### To-Do
@@ -11,11 +11,13 @@
 - [x] Design UI from wireframe
   - [x] Find color palette to follow
 - [x] Hook up MongoDB
-  - [x] Create data model and define schemas
+  - [x] Create data model and define schemas for user data
   - [ ] Implement CRUD functionalities in components (in the process)
-  - [ ] Build API Endpoints that will call the CRUD functions to interact with the database
+  - [x] Build API Endpoints that will call the CRUD functions to interact with the database
   - [ ] Look into the library Passport.js for auth
-- [ ] Research how to tie in ChatGPT into generating stories
+- [x] Research how to tie in AI into generating stories
+  - [ ] Decide which libraries I want to use for text preprocessing, genre classification, and date filtering (historical eras)
+    - [ ] Look into spaCy for text preprocessing, HuggingFace Transformers for genre classification, and work with Flask for date (historical eras) filtering
 
 ## Notes
 
@@ -65,3 +67,17 @@ I need to make note anytime I move locations to make sure I've updated my IP add
 #### 17 May 2024
 
 I figured out why my username wasn't rendering on my page. I wasn't accessing the data the correct way. I kept doing "route.params" and I'd receive the entire parameter which is fine. However, I wanted to reference this under a new variable "userData" and call "userData.username" this wouldn't have worked. I needed to also do "route.params.route" to be able to easily access the other keys in the route.
+
+My next move is to start building and organizing the AI model. The way I'm thinking about this: a user can hit any of the genre cards or even search for a genre in the search bar and include a date. So let's say a user does "romance 1516", I'd then send this data to the backend in an endpoint. I'd use a POST method. After, my definition for the endpoint would deal with the Python scripts that breakdown this data and I'd get the important data back.
+
+Data I want to send to the backend to process:
+
+- Genre
+- Date (if user includes this)
+
+Data I want from backend after processing:
+
+- Story text
+- Date story occurred
+- Genre (maybe for scalability, what if the user is able to do a random feature where they don't know what kind of genre they want)
+- Image (this could be developed later)
