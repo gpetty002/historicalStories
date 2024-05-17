@@ -12,7 +12,7 @@
   - [x] Find color palette to follow
 - [x] Hook up MongoDB
   - [x] Create data model and define schemas
-  - [ ] Implement CRUD functionalities in components
+  - [ ] Implement CRUD functionalities in components (in the process)
   - [ ] Build API Endpoints that will call the CRUD functions to interact with the database
   - [ ] Look into the library Passport.js for auth
 - [ ] Research how to tie in ChatGPT into generating stories
@@ -55,3 +55,13 @@ I'm able to get through the login screen. My endpoint is working. I had everythi
 I am having a new issue however. I am now unable to simply render the user's username using the data I passed through with route.params. All of the data shows up correctly. Its all there. Its now just parsing the data.
 
 I have a feeling that the issue has to do with some async call or the logic behind the screen having to render first. I think the screen is rendering but is unable to get the data passed through in time. Almost like there's a delay that is preventing the data from updating in time with the rendering of the screen. I need to figure out how to use the async calls correctly to avoid this issue.
+
+#### 16 May 2024
+
+Attempted to run app as a quick demo for a friend, but I couldn't login. I later realized that I forgot to remove .env from the git ignore file. I also realized because I had changed locations, my wifi network was different. This changed my IP address. MongoDB was unable to connect to my DB because it didn't recognize my new IP address and prevented me from connecting to the DB.
+
+I need to make note anytime I move locations to make sure I've updated my IP address.
+
+#### 17 May 2024
+
+I figured out why my username wasn't rendering on my page. I wasn't accessing the data the correct way. I kept doing "route.params" and I'd receive the entire parameter which is fine. However, I wanted to reference this under a new variable "userData" and call "userData.username" this wouldn't have worked. I needed to also do "route.params.route" to be able to easily access the other keys in the route.

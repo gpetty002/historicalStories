@@ -13,27 +13,11 @@ const FeaturedScreen = ({ route }) => {
 
   const fetchUserData = () => {
     if (route.params) {
-      setUserData(route.params);
+      setUserData(route.params.route);
     } else {
       setUserData({ username: "goofyGoober1", dateLastRead: Date.now() });
     }
   };
-
-  React.useEffect(() => {
-    const username = userData ? userData.username : "undefined";
-    console.log(username);
-  }, [userData]);
-
-  /*
-
-  this is route.params
-  {"route": {"__v": 0, "_id": "6641897de9b16e562c64018a", "bookmarkedStories": [], "dateCreated": "2024-05-13T03:31:09.162Z", "dateLastRead": "2024-05-13T03:31:09.162Z", "email": "lol@gmail.com", "likedGenres": [], "password": "soccer", "username": "dogggggg"}}
-
-  */
-
-  console.log(userData);
-  const username = route.params["username"];
-  console.log(username); // this prints out undefined even though route.params is something
 
   const formattedDate =
     userData && userData.dateLastRead

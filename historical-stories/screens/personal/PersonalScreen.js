@@ -5,12 +5,31 @@ import { Button, View, Text, StyleSheet, Image } from "react-native";
 import StoryList from "../../components/personal/StoryList";
 import Colors from "../../assets/colors";
 
-const PersonalScreen = ({ navigation }) => {
+const PersonalScreen = ({ route }) => {
   const [userAvatar, setUserAvatar] = useState(
     require("../../assets/personal/squidwardInactive.jpeg")
   );
-  const [email, setEmail] = useState("fakeEmail@yahoo.com");
-  const [dateJoined, setDateJoined] = useState("Apr 29 2024");
+  const [userData, setUserData] = React.useState(null);
+
+  React.useEffect(() => {
+    fetchUserData();
+  });
+
+  const fetchUserData = () => {
+    if (route.params) {
+      setUserData(route.params.route);
+    } else {
+      setUserData({
+        email: "fakeEmail@yahoo.com",
+        dateCreated: Date.now().toLocaleDateString(),
+      });
+    }
+  };
+
+  const formattedDate =
+    userData && userData.dateCreated
+      ? new Date(userData.dateCreated).toLocaleDateString()
+      : new Date().toLocaleDateString();
 
   return (
     <View style={styles.container}>
@@ -18,9 +37,9 @@ const PersonalScreen = ({ navigation }) => {
         <Image source={userAvatar} style={styles.profilePicture}></Image>
         <View style={styles.userInfo}>
           <Text style={styles.label}>Email: </Text>
-          <Text style={styles.value}>{email}</Text>
+          <Text style={styles.value}>{userData?.email}</Text>
           <Text style={styles.label}>Date Joined: </Text>
-          <Text style={styles.value}>{dateJoined}</Text>
+          <Text style={styles.value}>{formattedDate}</Text>
         </View>
       </View>
       <View style={styles.divider}></View>
