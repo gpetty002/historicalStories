@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../Controllers/UserController");
+const StoryController = require("../Controllers/StoryController");
 
 console.log("Mounted");
 
@@ -14,6 +15,6 @@ router.use((req, res, next) => {
 // routes
 router.post("/signup", UserController.signup);
 router.post("/login", UserController.login);
-router.get("/userData", UserController.getUserData);
+router.post("/stories/filter", StoryController.storiesFiltered);
 
 module.exports = router;

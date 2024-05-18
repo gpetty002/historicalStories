@@ -2,7 +2,6 @@
 
 require("dotenv").config({ path: "../.env" });
 const express = require("express");
-const axios = require("axios");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const routes = require("./routes/routes");

@@ -60,3 +60,9 @@ Data I want from backend after processing:
 - Date story occurred
 - Genre (maybe for scalability, what if the user is able to do a random feature where they don't know what kind of genre they want)
 - Image (this could be developed later)
+
+I set up the endpoints. I had difficulty setting up the endpoints between the JavaScript backend and the Python backend. I tested out my `/stories/filter` JavaScript endpoint on Postman. I know it went through because on the terminal it said
+
+> Error calling Python service connect ECONNREFUSED ::1:5001
+
+This was my logging message in `callPythonService` which uses Axios to send a request to the Python backend. I called the `/processStory` endpoint on Postman to see if this worked and it did. I kept asking ChatGPT what my error could've been and it said to check the routes I was using. I decided to check on Google using my error message and had found a StackOverflow discussion about this exact topic. They suggested using your actual IP address number instead of typing it out to avoid DNS issues. This actually worked!
