@@ -66,3 +66,69 @@ I set up the endpoints. I had difficulty setting up the endpoints between the Ja
 > Error calling Python service connect ECONNREFUSED ::1:5001
 
 This was my logging message in `callPythonService` which uses Axios to send a request to the Python backend. I called the `/processStory` endpoint on Postman to see if this worked and it did. I kept asking ChatGPT what my error could've been and it said to check the routes I was using. I decided to check on Google using my error message and had found a StackOverflow discussion about this exact topic. They suggested using your actual IP address number instead of typing it out to avoid DNS issues. This actually worked!
+
+#### 22 May 2024
+
+From OpenAI's documentation, don't forget to use the parameter `response_format` and set it to `{'type': 'json_object'}`. According to the docs, the response will not always be sent in a JSON format, but this parameter changes this.
+
+I installed the OpenAI library to the project. This is for sure a library I want to use.
+
+I'm wondering if I still need to use Spacy, Hugging Faces' Transformers, and PyTorch.
+
+Different Library Use Cases:
+
+- Spacy
+  - If I need efficient and straightforward text-processing tasks like NER (Named Entity Recognition) - a method that extracts information based on text, POS (Part of Speech) tagging, and dependency parsing.
+- Torch
+  - If I want to build and train a custom neural networks or require low-level control over the model training and architecture
+- Hugging Face Transformers
+  - If I need advanced NLP (Natural Language Processing) like text generation, summarization, or question answering using pre-trained models
+
+For my project's goal, I will be focusing on only using Spacy and OpenAI's libraries. Spacy will allow me to improve the search which will parse and categorize dates and genres. OpenAI will allow me to query any story I want. However, I am a bit worried about how often it will center on Black and Brown stories.
+
+Is there a way to have the model center on Black and Brown stories?
+
+If I want the model to focus on Black and Brown people that's fine tuned, I'd have to use the Hugging Face transformers model.
+Alternative One:
+
+- Data Collection:
+  - Collect data and preprocess texts from various cultures I'm interested in (this would be in a txt file)
+  - Ensure the data is diverse
+- Hugging Face Model
+  - Using the Hugging Face Transformers lib, I can fine tune ChatGPT-3
+
+Alternative Two:
+
+- I could emphasize in the OpenAI request call to make sure it chooses a historical story that focuses on Black and Brown people
+
+#### 27 May 2024
+
+I decided that I'm going to use both methods. As of now, I don't have data for the stories, but I want to explore this. I was thinking of reaching out to my history department on campus and seeing if I could get at least 10-20 stories about Arabs, Indians, Latinos, Blacks, and Philipinos. This would be a start.
+
+However, until I organize this better, I am going to use the prompt method and create a generic prompt message for the StoryCards and then for the search bar I'll allow users to type anything they want. I'll add placeholder text in the search bar that gives an example of how users can utilize this feature.
+
+For the data collection, I was thinking I'd need:
+
+- Story's title
+- Story's content (text)
+- Story's genre
+- Story's time period
+- Cultural focus
+
+Below is the best example of how I'd want to structure the JSON.
+
+```
+[
+  {
+    "title": "Legend of the Mayan Sun",
+    "content": "In the ancient city of Tikal, a young warrior named Ajaw...",
+    "genre": "Mythology",
+    "period": "Pre-Columbian",
+    "cultural_focus": "Mayans"
+  },
+  ...
+]
+
+```
+
+This way we can sort through the period and cultural focus in an organized way because we'd have this data available in our JSON file. Perhaps in my data collection process, I could show this as an example and have historians simply fill out a Google Form.
