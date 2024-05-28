@@ -36,6 +36,7 @@ const SearchStack = ({ route }) => (
       name="StoryProfileScreen"
       options={{ headerShown: false }}
       component={StoryProfileScreen}
+      initialParams={route.params}
     />
   </Stack.Navigator>
 );

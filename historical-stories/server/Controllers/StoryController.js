@@ -2,7 +2,7 @@
 
 const axios = require("axios");
 
-async function callPythonService(data) {
+async function getStory(data) {
   try {
     const response = await axios.post(
       "http://127.0.0.1:5001/processStory",
@@ -11,22 +11,42 @@ async function callPythonService(data) {
     );
     return response.data;
   } catch (error) {
-    console.log("Error calling Python service", error.message);
+    console.log("Error getting story", error.message);
     throw error;
   }
 }
 
-exports.storiesFiltered = async (req, res) => {
-  const { genre, date, random } = req.body;
-
-  if (random) {
-    // create a function to choose a random date in history
-  }
-
+async function getRandomStory(data) {
   try {
-    const filteredStories = await callPythonService({ genre, date });
-    res.json(filteredStories);
+    const response = await axios.post(
+      "http://127.0.0.1:5001/processRandomStory",
+      data,
+      { headers: { "Content-Type": "application/json" } }
+    );
+    return response.data;
+  } catch (error) {
+    console.log("Error getting random story", error.message);
+    throw error;
+  }
+}
+
+exports.storiesRandom = async (req, res) => {
+  const { genre } = req.body;
+  try {
+    const randomStory = await getRandomStory({ genre });
+    res.json(randomStory);
   } catch {
     res.status(500).send("Error processing stories");
+  }
+};
+
+exports.storiesSearch = async (req, res) => {
+  const { genre, date } = req.body;
+
+  try {
+    const story = await getStory({ genre, date });
+    res.json(story);
+  } catch {
+    res.status(500).send("Error processing random story");
   }
 };

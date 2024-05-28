@@ -15,6 +15,7 @@ router.use((req, res, next) => {
 // routes
 router.post("/signup", UserController.signup);
 router.post("/login", UserController.login);
-router.post("/stories/filter", StoryController.storiesFiltered);
+router.post("/stories/random", StoryController.storiesRandom);
+router.post("/stories/search", StoryController.storiesSearch);
 
 module.exports = router;

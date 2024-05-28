@@ -1,7 +1,7 @@
 // SearchScreen.js
 
 import React, { useState } from "react";
-import { Button, View, StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SearchBar } from "react-native-elements";
 import StoryGenres from "../../assets/search/StoryGenres";
@@ -15,20 +15,34 @@ const SearchScreen = ({ navigation }) => {
     setSearch(searchValue);
   };
 
-  const goToGenre = (genreName) => {
-    navigation.navigate("StoryProfileScreen", { genre: genreName });
-  };
+  const goToGenre = (genre) => {
+    // Get story from backend
 
-  const error = console.error;
-  console.error = (...args: any) => {
-    if (/defaultProps/.test(args[0])) return;
-    error(...args);
+    fetch(`http://localhost:8000/stories/random`, {
+      method: "POST",
+      body: JSON.stringify({ genre }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to send random story response");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        navigation.navigate("StoryProfileScreen", { route: data });
+      })
+      .catch((error) => {
+        console.log("Error getting data through SearchScreen", error);
+      });
   };
 
   return (
     <ScrollView style={styles.background}>
       <SearchBar
-        placeholder="Discover something new"
+        placeholder="Tell me a story about an African kingdom before colonization..."
         onChangeText={updateSearch}
         value={search}
         containerStyle={styles.searchBar}
