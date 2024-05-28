@@ -132,3 +132,27 @@ Below is the best example of how I'd want to structure the JSON.
 ```
 
 This way we can sort through the period and cultural focus in an organized way because we'd have this data available in our JSON file. Perhaps in my data collection process, I could show this as an example and have historians simply fill out a Google Form.
+
+Today, I finally connected the OpenAI endpoints I had defined in my Python backend with the client side.
+
+I came across the issue of rendering the `StoryProfileScreen.js` before making sure that we had the required params necessary to populate this component. Even though I was able to pass in the data fine and the endpoints were working correctly calling the API with the API key, it still wouldn't work. I was using `useEffect` as well to try to set this data but it still didn't render.
+
+A quick workaround I found was to include an if statement that checks if `storyData` is null, then I'd return null to indicate we're still loading.
+
+```
+  if (!storyData) {
+    return null; // Or a loading indicator
+  }
+```
+
+This immediately worked
+
+As of now, I'm able to successfully call OpenAI's API and query the data I need that I specified in earlier entries. I'm able to sucessfully display this as well.
+
+My only issue now is that I don't like the stories. They're short, not detailed, and most don't include the specific cultural group that the story is about. They're extremely vague.
+
+This is where an actual historical dataset from certified historians will come in handy.
+
+This is my next step in this process. I need to begin organizing myself to collect stories in the next few weeks.
+
+I also want clean up the UI and implement the save story feature, but to do the latter, I want the stories to be refined first. So this is a later issue. Cleaning up the UI can also occur much later.

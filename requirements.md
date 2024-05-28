@@ -7,6 +7,10 @@
 - Database: MongoDB
 - AI Models: OpenAI, Spacy
 
+### Data Collection
+
+This is where I am surveying Black and Brown stories [Historical Stories Collection](https://airtable.com/appSMj8R9vlZ5uev5/paggSlZfvYothcIpt/form)
+
 ### To-Do
 
 - [x] Design UI from wireframe
@@ -20,5 +24,8 @@
   - [x] Decide which libraries I want to use for text preprocessing, genre classification, and date filtering (historical eras)
     - [x] Look into spaCy for text preprocessing, HuggingFace Transformers for genre classification, and work with Flask for date (historical eras) filtering
 - [ ] Develop OpenAI functionalities
-  - [ ] Set up a simple response in the back-end and on the press of a genre card, console log what OpenAI sends back
+  - [x] Set up a simple response in the back-end and on the press of a genre card, console log what OpenAI sends back
+  - [ ] Refine OpenAI's model and fine-tune
+    - [ ] Ask historians on campus to assist with the data collection
+      - [x] Create an Airtable form to collect process stories
 - [ ] Develop Spacy calls for text processing

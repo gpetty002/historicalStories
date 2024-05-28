@@ -48,6 +48,8 @@ const StoryProfileScreen = ({ route }) => {
           <View style={styles.infoRow}>
             <Text style={styles.label}>Era: </Text>
             <Text style={styles.value}>{storyData.period}</Text>
+          </View>
+          <View style={styles.infoRow}>
             <Text style={styles.label}>Cultural Focus: </Text>
             <Text style={styles.value}>{storyData.cultural_focus}</Text>
           </View>
@@ -82,16 +84,17 @@ const styles = StyleSheet.create({
   storyContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingRight: 20,
-    paddingLeft: 20,
+    paddingRight: 10,
+    paddingLeft: 5,
     paddingBottom: 30,
   },
   storyImage: {
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
+    borderRadius: 100,
   },
   storyTitle: {
-    fontSize: 21,
+    fontSize: 20,
     color: "white",
     fontWeight: "bold",
   },
@@ -121,15 +124,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "white",
     fontFamily: "Helvetica",
+    marginRight: 72,
   },
   infoContainer: {
     flex: 1,
-    marginLeft: 20,
+    marginLeft: 15,
   },
   infoRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 15,
+    marginTop: 10,
   },
   storyIconContainer: {
     flex: 1,

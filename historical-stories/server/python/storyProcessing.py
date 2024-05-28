@@ -51,7 +51,7 @@ def getRandomHistoricalDate():
         ("World Wars Era", 1914, 1945),
         ("Armenian Genocide", 1915, 1917),
         ("Partition of India", 1947, 1947),
-        ("Post-War Era", 1945, 2024)
+        ("Post-War Era", 1945, 2000),
   ]
 
   period = random.choice(historicalDates)
