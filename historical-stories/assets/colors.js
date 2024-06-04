@@ -11,8 +11,8 @@ const Colors = {
   background: "#1D233B",
   searchBar: "#303964",
   searchBarInput: "#1D233B",
-  login: "#362d42", // english violet
-  loginCircles: "#7962A5",
+  login: "#355887", // english violet
+  loginCircles: "#a94ab5",
   text: "#E0EFDE", // honeydew
 };
 

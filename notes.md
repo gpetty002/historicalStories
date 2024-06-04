@@ -156,3 +156,15 @@ This is where an actual historical dataset from certified historians will come i
 This is my next step in this process. I need to begin organizing myself to collect stories in the next few weeks.
 
 I also want clean up the UI and implement the save story feature, but to do the latter, I want the stories to be refined first. So this is a later issue. Cleaning up the UI can also occur much later.
+
+#### 04 June 2024
+
+Some thing came up in my personal life and I wasn't able to work on the project for a week, but I am back. I've reached out to three history professionals. One who works with Mayan medicine studies, one who works with Indian feminist studies, and another who focuses on Palestinian studies. I also reached out to a friend for Filipino stories.
+
+I also discussed the project with a Feminist studies graduate student and they suggested crowdsourcing should be the main focal point for story collection. However, I should use OpenAI's API only for writing the stories better and making them more detailed and engaging. This is because OpenAI is generative so it is more likely to be less factual.
+
+I am using this approach instead.
+
+In the meantime, I will add the story of the day feature on the Featured Screen. I will also be tying up loose ends.
+
+I also have meetings with history professionals today as well.

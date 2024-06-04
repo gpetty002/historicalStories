@@ -21,6 +21,12 @@ const FeaturedStack = ({ route }) => (
       options={{ headerShown: false }}
       initialParams={route.params}
     />
+    <Stack.Screen
+      name="StoryProfileScreen"
+      options={{ headerShown: false }}
+      component={StoryProfileScreen}
+      initialParams={route.params}
+    />
   </Stack.Navigator>
 );
 

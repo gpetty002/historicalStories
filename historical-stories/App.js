@@ -12,6 +12,14 @@ import React from "react";
 const Stack = createStackNavigator();
 
 const App = () => {
+  const originalWarn = console.warn;
+  console.warn = (message, ...args) => {
+    if (message.includes("defaultProps")) {
+      return;
+    }
+    originalWarn(message, ...args);
+  };
+
   return (
     <PaperProvider>
       <NavigationContainer>

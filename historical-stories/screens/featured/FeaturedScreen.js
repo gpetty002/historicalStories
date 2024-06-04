@@ -1,11 +1,15 @@
 // FeaturedScreen.js
 
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Modal, Pressable } from "react-native";
+import { Icon } from "react-native-elements";
+import StoryCard from "../../components/search/StoryCard";
 import Colors from "../../assets/colors";
+import MayanImg from "../../assets/search/images/mayan.jpeg";
 
-const FeaturedScreen = ({ route }) => {
+const FeaturedScreen = ({ route, navigation }) => {
   const [userData, setUserData] = React.useState(null);
+  const [modalVisible, setModalVisible] = useState(true);
 
   React.useEffect(() => {
     fetchUserData();
@@ -19,6 +23,30 @@ const FeaturedScreen = ({ route }) => {
     }
   };
 
+  const goToStoryOfTheDay = () => {
+    // get story of the day, specify that it should be a story relevant to the day
+    const today = new Date();
+    fetch(`http://localhost:8000/stories/today`, {
+      method: "POST",
+      body: JSON.stringify({ today }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to send today in history response");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        navigation.navigate("StoryProfileScreen", { route: data });
+      })
+      .catch((error) => {
+        console.log("Error getting data through FeaturedScreen", error);
+      });
+  };
+
   const formattedDate =
     userData && userData.dateLastRead
       ? new Date(userData.dateLastRead).toLocaleDateString()
@@ -27,6 +55,34 @@ const FeaturedScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       <View style={styles.welcomeContainer}>
+        <Modal
+          visible={modalVisible}
+          transparent={true}
+          onRequestClose={() => {
+            setModalVisible(modalVisible);
+          }}
+        >
+          <View style={styles.modalCentered}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Story of the Day!</Text>
+              <Pressable
+                style={styles.closeButton}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Icon name="close" color="white"></Icon>
+              </Pressable>
+              <Pressable
+                style={styles.storyButton}
+                onPress={() => {
+                  goToStoryOfTheDay();
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <Text style={styles.buttonText}>Discover</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
         <Text style={styles.welcomeHeading}>
           Welcome back, {userData?.username}!
         </Text>
@@ -38,12 +94,58 @@ const FeaturedScreen = ({ route }) => {
         <Text style={styles.headings}>Stories Based on Your Readings</Text>
         <View style={styles.divider}></View>
         <Text style={styles.headings}>Your Daily Historical Dosage</Text>
+        <StoryCard
+          genre={"Today in History"}
+          onPress={goToStoryOfTheDay}
+          color={Colors.active}
+          imageSource={MayanImg}
+        ></StoryCard>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  modalCentered: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: Colors.searchBar,
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    elevation: 5,
+  },
+  modalText: {
+    color: Colors.text,
+    textAlign: "center",
+    paddingTop: 15,
+    fontSize: 22,
+    fontWeight: "bold",
+  },
+  closeButton: {
+    paddingLeft: 10,
+    position: "absolute",
+    top: 0,
+    right: 0,
+    marginTop: 15,
+    marginRight: 15,
+  },
+  storyButton: {
+    borderRadius: 20,
+    padding: 10,
+    marginTop: 20,
+    elevation: 2,
+    backgroundColor: Colors.active,
+  },
+  buttonText: {
+    color: Colors.text,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
   container: {
     flex: 1,
     backgroundColor: Colors.background,

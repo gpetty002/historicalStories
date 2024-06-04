@@ -67,7 +67,7 @@ def generateRandomStory(date, genre):
     - content
     - genre
     - period
-    - cultural_focus
+    - culturalFocus
     Example format:
     [
       {{
@@ -75,7 +75,7 @@ def generateRandomStory(date, genre):
         "content": "In the ancient city of Tikal, a young warrior named Ajaw...",
         "genre": "Mythology",
         "period": "Pre-Columbian",
-        "cultural_focus": "Mayans"
+        "culturalFocus": "Mayans"
       }},
       ...
     ]

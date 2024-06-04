@@ -11,15 +11,19 @@
 
 This is where I am surveying Black and Brown stories [Historical Stories Collection](https://airtable.com/appSMj8R9vlZ5uev5/paggSlZfvYothcIpt/form)
 
+I am crowdsourcing my historical stories and using OpenAI's API to rewrite them with more details to be more engaging.
+
 ### To-Do
 
 - [x] Design UI from wireframe
   - [x] Find color palette to follow
+  - [x] Design story of the day feature (only pops up when you first login/signup into the app)
 - [x] Hook up MongoDB
   - [x] Create data model and define schemas for user data
   - [ ] Implement CRUD functionalities in components (in the process)
   - [x] Build API Endpoints that will call the CRUD functions to interact with the database
   - [ ] Look into the library Passport.js for auth
+  - [ ] Find way to check all of the users in MongoDB
 - [x] Research how to tie in AI into generating stories
   - [x] Decide which libraries I want to use for text preprocessing, genre classification, and date filtering (historical eras)
     - [x] Look into spaCy for text preprocessing, HuggingFace Transformers for genre classification, and work with Flask for date (historical eras) filtering
