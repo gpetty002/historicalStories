@@ -13,7 +13,6 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = (email, password) => {
     // Confirm login with database
-
     fetch(`http://localhost:8000/login`, {
       method: "POST",
       body: JSON.stringify({ email, password }),
@@ -32,6 +31,7 @@ const LoginScreen = ({ navigation }) => {
       })
       .catch((error) => {
         console.log("Error getting data through login screen", error);
+        setLoginFail(true);
       });
   };
 
@@ -62,9 +62,7 @@ const LoginScreen = ({ navigation }) => {
           onPress={() => handleLogin(email, password)}
         ></Button>
         {loginFail && (
-          <Text style={{ color: "red", textAlign: "center" }}>
-            Try logging in again!
-          </Text>
+          <Text style={styles.failMessage}>Try logging in again!</Text>
         )}
       </View>
     </View>
@@ -85,6 +83,12 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
     fontWeight: "bold",
     textAlign: "center",
+  },
+  failMessage: {
+    color: "#f22e4b",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });
 

@@ -11,6 +11,7 @@ const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [signupFail, setSignupFail] = React.useState(false);
+  const [userExists, setUserExists] = React.useState(false);
 
   const handleSignup = (username, email, password) => {
     // Confirm signup with database
@@ -23,6 +24,16 @@ const SignupScreen = ({ navigation }) => {
       },
     })
       .then((response) => {
+        switch (response.status) {
+          case 400:
+            setUserExists(true);
+            break;
+          case 500:
+            setSignupFail(true);
+            break;
+          default:
+            break;
+        }
         if (!response.ok) {
           throw new Error("Failed to send response for sign up");
         }
@@ -34,7 +45,6 @@ const SignupScreen = ({ navigation }) => {
       })
       .catch((error) => {
         console.log("Error creating user on frontend", error);
-        setSignupFail(true);
       });
   };
 
@@ -64,10 +74,13 @@ const SignupScreen = ({ navigation }) => {
           color={Colors.text}
           onPress={() => handleSignup(username, email, password)}
         ></Button>
-        {signupFail && (
-          <Text style={{ color: "red", textAlign: "center" }}>
-            Try signing in again!
+        {userExists && (
+          <Text style={styles.failMessage}>
+            User exists! Login or try a different email!
           </Text>
+        )}
+        {signupFail && (
+          <Text style={styles.failMessage}>Could not connect to server!</Text>
         )}
       </View>
     </View>
@@ -97,6 +110,12 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
     fontWeight: "bold",
     textAlign: "center",
+  },
+  failMessage: {
+    color: "#f22e4b",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });
 

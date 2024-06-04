@@ -13,11 +13,11 @@ const StoryList = ({ userEmail }) => {
 
   const dummyList = [
     {
-      title: "The Prince and the Pauper",
+      title: "Creation of Maya",
       dateSaved: "Apr 20 2024",
     },
     {
-      title: "Story Number 1",
+      title: "Inca Empire",
       dateSaved: "Apr 20 2024",
     },
   ];

@@ -1,22 +1,13 @@
-// user.js
+// userProfile.js
 
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
+const userProfileScema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     unique: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true,
-  },
-  password: {
-    type: String,
-    required: true,
+    ref: "UserAuth",
   },
   dateCreated: {
     type: Date,
@@ -35,4 +26,4 @@ const userSchema = new mongoose.Schema({
   likedGenres: [String],
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("UserProfile", userProfileScema);

@@ -54,6 +54,7 @@ exports.storiesSearch = async (req, res) => {
 exports.storiesToday = async (req, res) => {
   const { date } = req.body;
   try {
+    // use date once we are able to get more stories
     // we would create another fetch that asks the Python back end for a story that happened today.
     const story = {
       title: "Creation of Maya",
