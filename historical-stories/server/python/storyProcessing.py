@@ -99,3 +99,43 @@ def generateRandomStory(date, genre):
   except json.JSONDecodeError as e:
     print("Error decoding JSON", e)
   return []
+
+def generateTodayStory():
+  prompt = f"""
+    Write a long detailed historical story that centers on Black and Brown civilizations that occured today in history or at least as close as possible to today's date. Please format the output into a JSON array with objects containing the following fields:
+    - title
+    - content
+    - genre
+    - period
+    - culturalFocus
+    Example format:
+    [
+      {{
+        "title": "Legend of the Mayan Sun",
+        "content": "In the ancient city of Tikal, a young warrior named Ajaw...",
+        "genre": "Mythology",
+        "period": "Pre-Columbian",
+        "culturalFocus": "Mayans"
+      }},
+      ...
+    ]
+
+  """
+
+  response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    response_format={"type": "json_object"},
+    messages=[
+      {"role": "system", "content": "You are a helpful assistant designed to generate historical stories that center on Black and Brown civilizations."},
+      {"role": "user", "content": prompt},
+    ],
+    max_tokens=3000,
+    temperature=0.7,
+  )
+
+  try:
+    story = json.loads(response.choices[0].message.content.strip())
+    return story
+  except json.JSONDecodeError as e:
+    print("Error decoding JSON", e)
+  return []

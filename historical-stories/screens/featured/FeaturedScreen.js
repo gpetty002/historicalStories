@@ -10,6 +10,8 @@ import MayanImg from "../../assets/search/images/mayan.jpeg";
 const FeaturedScreen = ({ route, navigation }) => {
   const [userData, setUserData] = React.useState(null);
   const [modalVisible, setModalVisible] = useState(true);
+  const [generated, setGenerated] = useState(false);
+  const [routeData, setRouteData] = useState(null);
 
   React.useEffect(() => {
     fetchUserData();
@@ -25,26 +27,30 @@ const FeaturedScreen = ({ route, navigation }) => {
 
   const goToStoryOfTheDay = () => {
     // get story of the day, specify that it should be a story relevant to the day
-    const today = new Date();
-    fetch(`http://localhost:8000/stories/today`, {
-      method: "POST",
-      body: JSON.stringify({ today }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to send today in history response");
-        }
-        return response.json();
+    if (!generated) {
+      fetch(`http://localhost:8000/stories/today`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .then((data) => {
-        navigation.navigate("StoryProfileScreen", { route: data });
-      })
-      .catch((error) => {
-        console.log("Error getting data through FeaturedScreen", error);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to send today in history response");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          navigation.navigate("StoryProfileScreen", { route: data });
+          setGenerated(true);
+          setRouteData(data);
+        })
+        .catch((error) => {
+          console.log("Error getting data through FeaturedScreen", error);
+        });
+    } else {
+      navigation.navigate("StoryProfileScreen", { route: routeData });
+    }
   };
 
   const formattedDate =

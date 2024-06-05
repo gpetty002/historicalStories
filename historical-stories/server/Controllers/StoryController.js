@@ -30,6 +30,19 @@ async function getRandomStory(data) {
   }
 }
 
+async function getTodayStory(data) {
+  try {
+    const response = await axios.post(
+      "http://127.0.0.1:5001/processTodayStory",
+      { headers: { "Content-Type": "application/json" } }
+    );
+    return response.data;
+  } catch (error) {
+    console.log("Error getting today's story", error.message);
+    throw error;
+  }
+}
+
 exports.storiesRandom = async (req, res) => {
   const { genre } = req.body;
   try {
@@ -52,18 +65,10 @@ exports.storiesSearch = async (req, res) => {
 };
 
 exports.storiesToday = async (req, res) => {
-  const { date } = req.body;
   try {
     // use date once we are able to get more stories
     // we would create another fetch that asks the Python back end for a story that happened today.
-    const story = {
-      title: "Creation of Maya",
-      content:
-        "Today in history, we look at the story of the Popol Vuh, or Popol Wuj in the K'iche language which is the story of creation of the Maya. Members of the royal K'iche lineages that had once ruled the highlands of Guatemala recorded the story in the 16th century to preserve it under the Spanish colonial rule...",
-      genre: "Action",
-      period: "16th century",
-      culturalFocus: "Mayan",
-    };
+    const story = await getTodayStory();
     res.json(story);
   } catch {
     res.status(500).send("Error processing today in history story");

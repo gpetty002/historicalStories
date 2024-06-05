@@ -168,3 +168,23 @@ I am using this approach instead.
 In the meantime, I will add the story of the day feature on the Featured Screen. I will also be tying up loose ends.
 
 I also have meetings with history professionals today as well.
+
+#### 05 June 2024
+
+I am going to post about Historical Stories soon on LinkedIn but I need to write up the ReadMe first. I also want to finish a couple of issues first as well.
+
+In terms of coding features, I think having a working Search bar would be nice before I make my project public. I think also making sure I have the Story of the Day actually working where it will generate a story that occured today. I wrote earlier that I don't like the stories that the AI generates because they lack depth so I understand that these stories won't be up to my standards.
+
+However, I want to discuss this in my LinkedIn post and how I plan on crowdsourcing stories orally with people from these communities.
+
+In my LinkedIn post, I want to discuss:
+
+- Why I started this project
+- What I want to accomplish
+- Give an example of a story that I want to replicate
+- The languages and libraries I used and why
+- What my results were using the OpenAI API
+- Why I don't like the results
+- Discuss how I need to pivot what I want to use the OpenAPI for
+  - OpenAPI will be used for categorizing stories, searching for stories that meet the users demands of genre, cultural focus, and time period
+  - I will crowdsource the stories orally
