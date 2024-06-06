@@ -95,7 +95,7 @@ fetch("/api/user/profile", {
 _The images below showcase content generated using OpenAI's API to create stories that focus on Black and Brown narratives._
 
 ![login](https://github.com/gpetty002/historicalStories/blob/main/historical-stories/assets/readme/action.png)
-![featured](https://github.com/gpetty002/historicalStories/blob/main/historical-stories/assets/readme/action.png)
+![featured](./assets/readme/featured.png)
 ![search](./historical-stories/assets/readme/search.png)
 ![profile](./historical-stories/assets/readme/profile.png)
 ![action](./historical-stories/assets/readme/action.png)
