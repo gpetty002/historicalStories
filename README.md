@@ -94,13 +94,13 @@ fetch("/api/user/profile", {
 
 _The images below showcase content generated using OpenAI's API to create stories that focus on Black and Brown narratives._
 
-![login](/historical-stories/assets/readme/login.png)
-![featured](/historical-stories/assets/readme/featured.png)
-![search](/historical-stories/assets/readme/search.png)
-![profile](/historical-stories/assets/readme/profile.png)
-![action](/historical-stories/assets/readme/action.png)
-![romance](/historical-stories/assets/readme/romance.png)
-<img src="/historical-stories/assets/readme/science.png" width="200" height="300" />
+![login](./historical-stories/assets/readme/login.png)
+![featured](./historical-stories/assets/readme/featured.png)
+![search](./historical-stories/assets/readme/search.png)
+![profile](./historical-stories/assets/readme/profile.png)
+![action](./historical-stories/assets/readme/action.png)
+![romance](./historical-stories/assets/readme/romance.png)
+<img src="./historical-stories/assets/readme/science.png" width="200" height="300" />
 
 ## Contributing
 
