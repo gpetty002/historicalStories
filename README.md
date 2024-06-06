@@ -101,7 +101,6 @@ _The images below showcase content generated using OpenAI's API to create storie
 
 ![action](https://github.com/gpetty002/historicalStories/blob/main/historical-stories/assets/readme/action.png)
 ![romance](./historical-stories/assets/readme/romance.png)
-<img src="./historical-stories/assets/readme/science.png" width="200" height="300" />
 
 ![login](https://github.com/gpetty002/historicalStories/blob/main/historical-stories/assets/readme/action.png)
 ![featured](https://github.com/gpetty002/historicalStories/blob/main/historical-stories/assets/readme/featured.png)
