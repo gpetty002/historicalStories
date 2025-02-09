@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.palette1.background,
+    color: Colors.palette1.primary,
   },
   welcomeContainer: {
     paddingTop: 40,
@@ -162,15 +163,15 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   welcomeHeading: {
-    color: "white",
+    color: Colors.palette1.teritiary,
     fontSize: 25,
-    fontFamily: "Helvetica",
+    fontFamily: "Merriweather",
     fontWeight: "bold",
   },
   readStats: {
-    color: "white",
+    color: Colors.palette1.teritiary,
     fontSize: 16,
-    fontFamily: "Helvetica",
+    fontFamily: "Merriweather",
     fontWeight: "bold",
     marginTop: 15,
   },
@@ -181,9 +182,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   headings: {
-    color: "white",
+    color: Colors.palette1.teritiary,
     fontSize: 21,
-    fontFamily: "Helvetica",
+    fontFamily: "Merriweather",
     fontWeight: "bold",
   },
 });

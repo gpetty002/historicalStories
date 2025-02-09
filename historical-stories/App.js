@@ -8,6 +8,7 @@ import LoginScreen from "./screens/auth/LoginScreen";
 import SignupScreen from "./screens/auth/SignupScreen";
 import NavigationScreen from "./screens/NavigationScreen";
 import React from "react";
+import { useFonts } from "expo-font";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,15 @@ const App = () => {
     }
     originalWarn(message, ...args);
   };
+
+  const [fontsLoaded] = useFonts({
+    Merriweather: require("./assets/fonts/Merriweather/Merriweather-Regular.ttf"),
+    Merriweather_Sans: require("./assets/fonts/Merriweather_Sans/static/MerriweatherSans-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>;
+  }
 
   return (
     <PaperProvider>

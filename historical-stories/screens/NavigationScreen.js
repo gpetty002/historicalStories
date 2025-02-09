@@ -64,12 +64,10 @@ const NavigationScreen = ({ route }) => {
       screenOptions={{
         tabBarPosition: "bottom",
         headerTintColor: "white",
-        headerStyle: {
-          backgroundColor: Colors.background,
-        },
         tabBarStyle: { backgroundColor: Colors.background },
         tabBarActiveTintColor: Colors.active,
         tabBarInactiveTintColor: "white",
+        headerShown: false,
       }}
     >
       <Tab.Screen
