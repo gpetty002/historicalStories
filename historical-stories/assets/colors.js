@@ -19,6 +19,7 @@ const Colors = {
     secondary: "#800020",
     accent: "#FEF3DF",
     teritiary: "#2C2C2C",
+    background: "#F5F4F3",
   },
   palette2: {
     primary: "#2466A9",
