@@ -14,6 +14,16 @@ const Colors = {
   login: "#355887", // english violet
   loginCircles: "#a94ab5",
   text: "#E0EFDE", // honeydew
+  palette1: {
+    primary: "#2C3E50",
+    secondary: "#800020",
+    accent: "#FEF3DF",
+    teritiary: "#2C2C2C",
+  },
+  palette2: {
+    primary: "#2466A9",
+    secondary: "#F09C00",
+  },
 };
 
 export default Colors;

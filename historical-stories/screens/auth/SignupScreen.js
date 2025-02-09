@@ -2,9 +2,8 @@
 
 import React from "react";
 import Colors from "../../assets/colors";
-import { Button, View, Text, StyleSheet } from "react-native";
+import { Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import InputBox from "../../components/auth/InputBox";
-import AnimatedCircles from "../../components/auth/AnimatedCircles";
 
 const SignupScreen = ({ navigation }) => {
   const [username, setUsername] = React.useState("");
@@ -51,37 +50,44 @@ const SignupScreen = ({ navigation }) => {
   return (
     <View style={styles.background}>
       <View style={styles.container}>
-        <AnimatedCircles></AnimatedCircles>
-        <Text style={styles.title}>Welcome to Historical Stories</Text>
-        <InputBox
-          value={username}
-          onChangeText={setUsername}
-          label={"Username"}
-        ></InputBox>
-        <InputBox
-          value={email}
-          onChangeText={setEmail}
-          label={"Email"}
-        ></InputBox>
-        <InputBox
-          value={password}
-          onChangeText={setPassword}
-          label={"Password"}
-          isHidden={true}
-        ></InputBox>
-        <Button
-          title="Sign up"
-          color={Colors.text}
-          onPress={() => handleSignup(username, email, password)}
-        ></Button>
-        {userExists && (
-          <Text style={styles.failMessage}>
-            User exists! Login or try a different email!
-          </Text>
-        )}
-        {signupFail && (
-          <Text style={styles.failMessage}>Could not connect to server!</Text>
-        )}
+        <Text style={styles.title}>Welcome to Rooted</Text>
+        <View style={styles.inputBoxContainer}>
+          <InputBox
+            value={username}
+            onChangeText={setUsername}
+            label={"Username"}
+          ></InputBox>
+          <InputBox
+            value={email}
+            onChangeText={setEmail}
+            label={"Email"}
+          ></InputBox>
+          <InputBox
+            value={password}
+            onChangeText={setPassword}
+            label={"Password"}
+            isHidden={true}
+          ></InputBox>
+          <TouchableOpacity
+            style={styles.signupBtn}
+            onPress={() => handleSignup(username, email, password)}
+          >
+            <Text style={styles.signupBtnText}>Sign Up</Text>
+          </TouchableOpacity>
+          <Button
+            title="Sign up"
+            color={Colors.text}
+            onPress={() => handleSignup(username, email, password)}
+          ></Button>
+          {userExists && (
+            <Text style={styles.failMessage}>
+              User exists! Login or try a different email!
+            </Text>
+          )}
+          {signupFail && (
+            <Text style={styles.failMessage}>Could not connect to server!</Text>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -90,18 +96,37 @@ const SignupScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: Colors.login,
-    color: Colors.text,
+    backgroundColor: Colors.palette1.accent,
   },
   container: {
-    marginTop: 290,
+    marginTop: 200,
   },
   title: {
-    fontSize: 30,
-    color: "white",
+    fontSize: 50,
+    color: Colors.palette2.primary,
     fontFamily: "Helvetica",
     fontWeight: "bold",
     textAlign: "center",
+    margin: 15,
+  },
+  inputBoxContainer: {
+    marginHorizontal: 20,
+    alignItems: "center",
+    width: "100%",
+    maxWidth: 350,
+  },
+  signupBtn: {
+    backgroundColor: Colors.palette1.teritiary,
+    padding: 15,
+    borderRadius: 8,
+    width: "100%",
+    alignItems: "center",
+    marginVertical: 10,
+    alignSelf: "center",
+  },
+  signupBtnText: {
+    color: "#FFFFFF",
+    fontSize: 18,
   },
   subheading: {
     fontSize: 15,
