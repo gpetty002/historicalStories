@@ -1,10 +1,9 @@
 // LoginScreen.js
 
 import React from "react";
-import { Button, View, Text, StyleSheet } from "react-native";
+import { Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import InputBox from "../../components/auth/InputBox";
 import Colors from "../../assets/colors";
-import AnimatedCircles from "../../components/auth/AnimatedCircles";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
@@ -35,35 +34,56 @@ const LoginScreen = ({ navigation }) => {
       });
   };
 
+  const handleForgotPassword = () => {};
+
   return (
     <View style={styles.background}>
       <View style={styles.container}>
-        <AnimatedCircles></AnimatedCircles>
-        <Text style={styles.title}>Historical Stories</Text>
-        <InputBox
-          value={email}
-          onChangeText={setEmail}
-          label={"Email"}
-        ></InputBox>
-        <InputBox
-          value={password}
-          onChangeText={setPassword}
-          isHidden={true}
-          label={"Password"}
-        ></InputBox>
-        <Button
-          title="New to Historical Stories? Sign up"
-          onPress={() => navigation.navigate("SignupScreen")}
-          color={Colors.text}
-        />
-        <Button
-          title="Login"
-          color={Colors.text}
-          onPress={() => handleLogin(email, password)}
-        ></Button>
-        {loginFail && (
-          <Text style={styles.failMessage}>Try logging in again!</Text>
-        )}
+        <Text style={styles.title}>Rooted</Text>
+        <View style={styles.signinContainer}>
+          <InputBox
+            value={email}
+            onChangeText={setEmail}
+            label={"Email"}
+          ></InputBox>
+          <InputBox
+            value={password}
+            onChangeText={setPassword}
+            isHidden={true}
+            label={"Password"}
+          ></InputBox>
+          <TouchableOpacity
+            style={styles.signinBtn}
+            onPress={() => handleLogin(email, password)}
+          >
+            <Text style={styles.signinText}>Log In</Text>
+          </TouchableOpacity>
+
+          <Text
+            style={styles.forgotPasswordBtn}
+            onPress={() => handleForgotPassword()}
+          >
+            Forgot password?
+          </Text>
+
+          {loginFail && (
+            <Text style={styles.failMessage}>
+              Sorry, your password was incorrect. Please double-check your
+              password
+            </Text>
+          )}
+        </View>
+        <View style={styles.footer}>
+          <Text style={styles.signupText}>
+            Don't have an account?{" "}
+            <Text
+              style={styles.signupBtnText}
+              onPress={() => navigation.navigate("SignupScreen")}
+            >
+              Sign up!
+            </Text>
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -72,23 +92,60 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: Colors.login,
+    backgroundColor: Colors.palette1.accent,
   },
   container: {
     marginTop: 280,
   },
+  signinContainer: {
+    marginHorizontal: 20,
+    alignItems: "center",
+    width: "100%",
+    maxWidth: 350,
+  },
   title: {
     fontSize: 50,
-    color: "white",
+    color: Colors.palette2.primary,
     fontFamily: "Helvetica",
     fontWeight: "bold",
     textAlign: "center",
   },
+  signinBtn: {
+    backgroundColor: Colors.palette1.teritiary,
+    padding: 15,
+    borderRadius: 8,
+    width: "100%",
+    alignItems: "center",
+    marginVertical: 10,
+    alignSelf: "center",
+  },
+  signinText: {
+    color: "#FFFFFF",
+    fontSize: 18,
+  },
+  forgotPasswordBtn: {
+    marginVertical: 10,
+    alignSelf: "flex-start",
+    fontSize: 15,
+    textDecorationLine: "underline",
+  },
   failMessage: {
     color: "#f22e4b",
     textAlign: "center",
+    fontSize: 13,
+  },
+  footer: {
+    marginTop: 160,
+  },
+  signupText: {
+    fontSize: 16,
+    color: Colors.palette1.teritiary,
+    textAlign: "center",
+  },
+  signupBtnText: {
+    fontSize: 16,
+    color: Colors.palette2.primary,
     fontWeight: "bold",
-    fontSize: 18,
   },
 });
 

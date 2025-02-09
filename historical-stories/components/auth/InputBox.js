@@ -30,15 +30,13 @@ const InputBox = ({ value, onChangeText, label, isHidden = false }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 40,
-    marginRight: 40,
-    marginTop: 15,
-    marginBottom: 5,
-    alignContent: "center",
+    marginVertical: 10,
+    width: "100%",
   },
   textBoxes: {
     backgroundColor: "white", // Change input box background color
     borderRadius: 10, // Apply border radius
+    width: "100%",
   },
 });
 
