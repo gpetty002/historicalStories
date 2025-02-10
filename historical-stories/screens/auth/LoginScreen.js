@@ -1,7 +1,15 @@
 // LoginScreen.js
 
 import React from "react";
-import { Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Button,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
 import InputBox from "../../components/auth/InputBox";
 import Colors from "../../assets/colors";
 
@@ -12,7 +20,7 @@ const LoginScreen = ({ navigation }) => {
 
   const handleLogin = (email, password) => {
     // Confirm login with database
-    fetch(`http://localhost:8000/login`, {
+    fetch(`http://10.0.0.123:8000/login`, {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: {
@@ -37,62 +45,64 @@ const LoginScreen = ({ navigation }) => {
   const handleForgotPassword = () => {};
 
   return (
-    <View style={styles.background}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Rooted</Text>
-        <View style={styles.signinContainer}>
-          <InputBox
-            value={email}
-            onChangeText={setEmail}
-            label={"Email"}
-          ></InputBox>
-          <InputBox
-            value={password}
-            onChangeText={setPassword}
-            isHidden={true}
-            label={"Password"}
-          ></InputBox>
-          <TouchableOpacity
-            style={styles.signinBtn}
-            onPress={() => handleLogin(email, password)}
-          >
-            <Text style={styles.signinText}>Log In</Text>
-          </TouchableOpacity>
-
-          <Text
-            style={styles.forgotPasswordBtn}
-            onPress={() => handleForgotPassword()}
-          >
-            Forgot password?
-          </Text>
-
-          {loginFail && (
-            <Text style={styles.failMessage}>
-              Sorry, your password was incorrect. Please double-check your
-              password
-            </Text>
-          )}
-        </View>
-        <View style={styles.footer}>
-          <Text style={styles.signupText}>
-            Don't have an account?{" "}
-            <Text
-              style={styles.signupBtnText}
-              onPress={() => navigation.navigate("SignupScreen")}
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.background}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Rooted</Text>
+          <View style={styles.signinContainer}>
+            <InputBox
+              value={email}
+              onChangeText={setEmail}
+              label={"Email"}
+            ></InputBox>
+            <InputBox
+              value={password}
+              onChangeText={setPassword}
+              isHidden={true}
+              label={"Password"}
+            ></InputBox>
+            <TouchableOpacity
+              style={styles.signinBtn}
+              onPress={() => handleLogin(email, password)}
             >
-              Sign up!
+              <Text style={styles.signinText}>Log In</Text>
+            </TouchableOpacity>
+
+            <Text
+              style={styles.forgotPasswordBtn}
+              onPress={() => handleForgotPassword()}
+            >
+              Forgot password?
             </Text>
-          </Text>
+
+            {loginFail && (
+              <Text style={styles.failMessage}>
+                Sorry, your password was incorrect. Please double-check your
+                password
+              </Text>
+            )}
+          </View>
+          <View style={styles.footer}>
+            <Text style={styles.signupText}>
+              Don't have an account?{" "}
+              <Text
+                style={styles.signupBtnText}
+                onPress={() => navigation.navigate("SignupScreen")}
+              >
+                Sign up!
+              </Text>
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: Colors.palette1.accent,
+    backgroundColor: Colors.palette1.tan,
   },
   container: {
     marginTop: 280,
@@ -105,13 +115,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 50,
-    color: Colors.palette2.primary,
+    color: Colors.palette1.blue,
     fontFamily: "Helvetica",
     fontWeight: "bold",
     textAlign: "center",
   },
   signinBtn: {
-    backgroundColor: Colors.palette1.teritiary,
+    backgroundColor: Colors.palette1.lightBlack,
     padding: 15,
     borderRadius: 8,
     width: "100%",
@@ -139,12 +149,12 @@ const styles = StyleSheet.create({
   },
   signupText: {
     fontSize: 16,
-    color: Colors.palette1.teritiary,
+    color: Colors.palette1.lightBlack,
     textAlign: "center",
   },
   signupBtnText: {
     fontSize: 16,
-    color: Colors.palette2.primary,
+    color: Colors.palette1.blue,
     fontWeight: "bold",
   },
 });

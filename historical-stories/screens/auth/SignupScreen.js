@@ -2,7 +2,15 @@
 
 import React from "react";
 import Colors from "../../assets/colors";
-import { Button, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Button,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
 import InputBox from "../../components/auth/InputBox";
 
 const SignupScreen = ({ navigation }) => {
@@ -48,62 +56,66 @@ const SignupScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.background}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Welcome to Rooted</Text>
-        <View style={styles.inputBoxContainer}>
-          <InputBox
-            value={username}
-            onChangeText={setUsername}
-            label={"Username"}
-          ></InputBox>
-          <InputBox
-            value={email}
-            onChangeText={setEmail}
-            label={"Email"}
-          ></InputBox>
-          <InputBox
-            value={password}
-            onChangeText={setPassword}
-            label={"Password"}
-            isHidden={true}
-          ></InputBox>
-          <TouchableOpacity
-            style={styles.signupBtn}
-            onPress={() => handleSignup(username, email, password)}
-          >
-            <Text style={styles.signupBtnText}>Sign Up</Text>
-          </TouchableOpacity>
-          <Button
-            title="Sign up"
-            color={Colors.text}
-            onPress={() => handleSignup(username, email, password)}
-          ></Button>
-          {userExists && (
-            <Text style={styles.failMessage}>
-              User exists! Login or try a different email!
-            </Text>
-          )}
-          {signupFail && (
-            <Text style={styles.failMessage}>Could not connect to server!</Text>
-          )}
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.background}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Welcome to Rooted</Text>
+          <View style={styles.inputBoxContainer}>
+            <InputBox
+              value={username}
+              onChangeText={setUsername}
+              label={"Username"}
+            ></InputBox>
+            <InputBox
+              value={email}
+              onChangeText={setEmail}
+              label={"Email"}
+            ></InputBox>
+            <InputBox
+              value={password}
+              onChangeText={setPassword}
+              label={"Password"}
+              isHidden={true}
+            ></InputBox>
+            <TouchableOpacity
+              style={styles.signupBtn}
+              onPress={() => handleSignup(username, email, password)}
+            >
+              <Text style={styles.signupBtnText}>Sign Up</Text>
+            </TouchableOpacity>
+            <Button
+              title="Sign up"
+              color={Colors.text}
+              onPress={() => handleSignup(username, email, password)}
+            ></Button>
+            {userExists && (
+              <Text style={styles.failMessage}>
+                User exists! Login or try a different email!
+              </Text>
+            )}
+            {signupFail && (
+              <Text style={styles.failMessage}>
+                Could not connect to server!
+              </Text>
+            )}
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: Colors.palette1.accent,
+    backgroundColor: Colors.palette1.tan,
   },
   container: {
     marginTop: 200,
   },
   title: {
     fontSize: 50,
-    color: Colors.palette2.primary,
+    color: Colors.palette1.blue,
     fontFamily: "Helvetica",
     fontWeight: "bold",
     textAlign: "center",
@@ -116,7 +128,7 @@ const styles = StyleSheet.create({
     maxWidth: 350,
   },
   signupBtn: {
-    backgroundColor: Colors.palette1.teritiary,
+    backgroundColor: Colors.palette1.lightBlack,
     padding: 15,
     borderRadius: 8,
     width: "100%",

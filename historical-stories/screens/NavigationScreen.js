@@ -64,10 +64,11 @@ const NavigationScreen = ({ route }) => {
       screenOptions={{
         tabBarPosition: "bottom",
         headerTintColor: "white",
-        tabBarStyle: { backgroundColor: Colors.background },
-        tabBarActiveTintColor: Colors.active,
-        tabBarInactiveTintColor: "white",
+        tabBarStyle: { backgroundColor: Colors.palette1.white },
+        tabBarActiveTintColor: Colors.palette1.lightBlack,
+        tabBarInactiveTintColor: Colors.palette1.grey,
         headerShown: false,
+        tabBarShowLabel: false,
       }}
     >
       <Tab.Screen
@@ -75,8 +76,14 @@ const NavigationScreen = ({ route }) => {
         component={FeaturedStack}
         initialParams={route.params}
         options={{
-          tabBarIcon: ({ size }) => (
-            <MaterialCommunityIcons name="star" color="white" size={size} />
+          tabBarIcon: ({ size, focused }) => (
+            <MaterialCommunityIcons
+              name="home-variant"
+              color={
+                focused ? Colors.palette1.lightBlack : Colors.palette1.grey
+              }
+              size={size}
+            />
           ),
         }}
       />
@@ -85,10 +92,12 @@ const NavigationScreen = ({ route }) => {
         component={SearchStack}
         initialParams={route.params}
         options={{
-          tabBarIcon: ({ size }) => (
+          tabBarIcon: ({ size, focused }) => (
             <MaterialCommunityIcons
-              name="card-search"
-              color="white"
+              name="magnify"
+              color={
+                focused ? Colors.palette1.lightBlack : Colors.palette1.grey
+              }
               size={size}
             />
           ),
@@ -99,8 +108,14 @@ const NavigationScreen = ({ route }) => {
         component={PersonalStack}
         initialParams={route.params}
         options={{
-          tabBarIcon: ({ size }) => (
-            <MaterialCommunityIcons name="account" color="white" size={size} />
+          tabBarIcon: ({ size, focused }) => (
+            <MaterialCommunityIcons
+              name="account"
+              color={
+                focused ? Colors.palette1.lightBlack : Colors.palette1.grey
+              }
+              size={size}
+            />
           ),
         }}
       />

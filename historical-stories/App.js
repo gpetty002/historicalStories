@@ -23,7 +23,10 @@ const App = () => {
 
   const [fontsLoaded] = useFonts({
     Merriweather: require("./assets/fonts/Merriweather/Merriweather-Regular.ttf"),
+    Merriweather_Bold: require("./assets/fonts/Merriweather/Merriweather-Bold.ttf"),
     Merriweather_Sans: require("./assets/fonts/Merriweather_Sans/static/MerriweatherSans-Regular.ttf"),
+    Merriweather_Sans_Bold: require("./assets/fonts/Merriweather_Sans/static/MerriweatherSans-Bold.ttf"),
+    Merriweather_Sans_Light: require("./assets/fonts/Merriweather_Sans/static/MerriweatherSans-Light.ttf"),
   });
 
   if (!fontsLoaded) {

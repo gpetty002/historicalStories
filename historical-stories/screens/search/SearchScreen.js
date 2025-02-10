@@ -1,11 +1,19 @@
 // SearchScreen.js
 
 import React, { useState } from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SearchBar } from "react-native-elements";
 import StoryGenres from "../../assets/search/StoryGenres";
-import StoryCard from "../../components/search/StoryCard";
+// import StoryCard from "../../components/search/StoryCard";
+import StoryCard from "../../components/StoryCard";
 import Colors from "../../assets/colors";
 
 const SearchScreen = ({ navigation }) => {
@@ -40,8 +48,47 @@ const SearchScreen = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={styles.background}>
-      <SearchBar
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.container}
+      >
+        <SearchBar
+          placeholder="Search"
+          containerStyle={styles.searchBar}
+          inputContainerStyle={styles.searchBarInput}
+          placeholderTextColor={Colors.palette1.grey}
+          searchIcon={
+            <MaterialCommunityIcons
+              name="magnify"
+              color={Colors.palette1.lightBlack}
+              size={24}
+            ></MaterialCommunityIcons>
+          }
+          platform="ios"
+        ></SearchBar>
+        <Text style={styles.heading}>Explore</Text>
+
+        {Object.values(StoryGenres).map((genre, index) => (
+          <View key={index}>
+            <Text style={styles.genreHeadings}>{genre.name}</Text>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.rowContainer}
+            >
+              <StoryCard
+                title={"The Fear of Quecholcohuatl"}
+                imageSource={genre.pathname}
+                style={styles.storyCard}
+              ></StoryCard>
+              <StoryCard
+                title={"Chimalpahin and the Preservation of Mexica Memory"}
+              ></StoryCard>
+            </ScrollView>
+          </View>
+        ))}
+        {/* <SearchBar
         placeholder="Tell me a story about an African kingdom before colonization..."
         onChangeText={updateSearch}
         value={search}
@@ -66,26 +113,54 @@ const SearchScreen = ({ navigation }) => {
           imageSource={genre.pathname}
           onPress={() => goToGenre(genre.name)}
         ></StoryCard>
-      ))}
-    </ScrollView>
+      ))} */}
+      </ScrollView>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: Colors.background,
-  },
   container: {
-    marginTop: 280,
+    flexGrow: 1,
+    backgroundColor: Colors.palette1.background,
+    paddingTop: 100,
+    paddingBottom: 20,
+    paddingHorizontal: 30,
   },
   searchBar: {
-    backgroundColor: Colors.searchBar,
-    fontFamily: "Helvetica",
+    backgroundColor: "transparent",
+    fontFamily: "Merriweather_Sans",
   },
   searchBarInput: {
-    color: "white",
-    backgroundColor: Colors.searchBarInput,
+    color: Colors.palette1.lightBlack,
+    backgroundColor: Colors.palette1.white,
+    borderRadius: 30,
+    borderColor: "#d6d6d6",
+    borderWidth: 1,
+    borderBottomWidth: 1,
+  },
+  heading: {
+    color: Colors.palette1.lightBlack,
+    fontFamily: "Merriweather-Bold",
+    fontSize: 18,
+    paddingTop: 15,
+  },
+  genreHeadings: {
+    color: Colors.palette1.lightBlack,
+    fontFamily: "Merriweather",
+    fontSize: 14,
+    paddingVertical: 10,
+  },
+  rowContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: 0,
+    margin: 0,
+  },
+  storyCard: {
+    width: 250,
+    marginRight: 10,
   },
 });
 

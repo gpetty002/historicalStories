@@ -15,15 +15,16 @@ const Colors = {
   loginCircles: "#a94ab5",
   text: "#E0EFDE", // honeydew
   palette1: {
-    primary: "#2C3E50",
-    secondary: "#800020",
-    accent: "#FEF3DF",
-    teritiary: "#2C2C2C",
+    greyBlue: "#2C3E50",
+    red: "#800020",
+    tan: "#FEF3DF",
+    lightBlack: "#2C2C2C",
     background: "#F5F4F3",
-  },
-  palette2: {
-    primary: "#2466A9",
-    secondary: "#F09C00",
+    white: "#FFFFFF",
+    green: "#52972D",
+    blue: "#2466A9",
+    yellow: "#F09C00",
+    grey: "#A2A2A2",
   },
 };
 

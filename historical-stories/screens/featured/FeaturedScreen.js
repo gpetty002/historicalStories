@@ -1,11 +1,22 @@
 // FeaturedScreen.js
 
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Modal, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import { Icon } from "react-native-elements";
-import StoryCard from "../../components/search/StoryCard";
+// import StoryCard from "../../components/search/StoryCard";
+import StoryCard from "../../components/StoryCard";
+import StatsCard from "../../components/featured/StatsCard";
 import Colors from "../../assets/colors";
 import MayanImg from "../../assets/search/images/mayan.jpeg";
+import MysteryImg from "../../assets/search/images/mystery.jpeg";
+import RomanceImg from "../../assets/search/images/romance.jpeg";
 
 const FeaturedScreen = ({ route, navigation }) => {
   const [userData, setUserData] = React.useState(null);
@@ -59,8 +70,68 @@ const FeaturedScreen = ({ route, navigation }) => {
       : new Date().toLocaleDateString();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.welcomeContainer}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}
+    >
+      <Text style={styles.welcomeHeading}>
+        Welcome back, {userData?.username}
+      </Text>
+      <View style={styles.statsContainer}>
+        <View style={styles.statsRowContainer}>
+          <StatsCard
+            title={"stories read"}
+            number={12}
+            numberColor={Colors.palette1.red}
+          ></StatsCard>
+          <StatsCard
+            title={"day streak"}
+            number={6}
+            numberColor={Colors.palette1.green}
+          ></StatsCard>
+          <StatsCard
+            title={"hours spent"}
+            number={4}
+            numberColor={Colors.palette1.yellow}
+          ></StatsCard>
+        </View>
+        <StatsCard
+          title={"historical eras explored"}
+          number={3}
+          numberColor={Colors.palette1.blue}
+          style={styles.erasExploredCard}
+        ></StatsCard>
+      </View>
+
+      <Text style={styles.headings}>Today in History</Text>
+      <View>
+        <StoryCard
+          title={"Chimalpahin and the Preservation of Mexica Memory"}
+          imageSource={MayanImg}
+          style={styles.fullWidthStoryCard}
+        ></StoryCard>
+      </View>
+
+      <Text style={styles.headings}>For you</Text>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.forYouRowContainer}
+      >
+        <StoryCard
+          title={
+            "The Sacred Seed: The Origins of Chocolate in Ancient Mesoamerican Civilizations"
+          }
+          imageSource={MysteryImg}
+          style={styles.storyCard}
+        ></StoryCard>
+        <StoryCard
+          title={"The Rise of Itzcoatl"}
+          imageSource={RomanceImg}
+          style={styles.storyCard}
+        ></StoryCard>
+      </ScrollView>
+      {/* <View style={styles.welcomeContainer}>
         <Modal
           visible={modalVisible}
           transparent={true}
@@ -106,8 +177,8 @@ const FeaturedScreen = ({ route, navigation }) => {
           color={Colors.active}
           imageSource={MayanImg}
         ></StoryCard>
-      </View>
-    </View>
+      </View> */}
+    </ScrollView>
   );
 };
 
@@ -153,9 +224,35 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: Colors.palette1.background,
-    color: Colors.palette1.primary,
+    color: Colors.palette1.greyBlue,
+    paddingTop: 100,
+    paddingHorizontal: 30,
+    paddingBottom: 20,
+  },
+  statsRowContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  erasExploredCard: {
+    width: "100%",
+    alignSelf: "center",
+  },
+  fullWidthStoryCard: {
+    width: "100%",
+  },
+  forYouRowContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: 0,
+    margin: 0,
+  },
+  storyCard: {
+    width: 250,
+    marginRight: 10,
   },
   welcomeContainer: {
     paddingTop: 40,
@@ -163,13 +260,12 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   welcomeHeading: {
-    color: Colors.palette1.teritiary,
-    fontSize: 25,
-    fontFamily: "Merriweather",
-    fontWeight: "bold",
+    color: Colors.palette1.lightBlack,
+    fontSize: 30,
+    fontFamily: "Merriweather-Bold",
   },
   readStats: {
-    color: Colors.palette1.teritiary,
+    color: Colors.palette1.lightBlack,
     fontSize: 16,
     fontFamily: "Merriweather",
     fontWeight: "bold",
@@ -182,10 +278,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   headings: {
-    color: Colors.palette1.teritiary,
-    fontSize: 21,
+    color: Colors.palette1.lightBlack,
+    fontSize: 18,
     fontFamily: "Merriweather",
     fontWeight: "bold",
+    paddingVertical: 10,
   },
 });
 

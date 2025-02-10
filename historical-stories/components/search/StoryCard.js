@@ -9,7 +9,11 @@ const StoryCard = ({ genre, imageSource, onPress, color }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <Card
-        containerStyle={{ margin: 25, backgroundColor: color, borderWidth: 0 }}
+        containerStyle={{
+          margin: 25,
+          backgroundColor: Colors.palette1.white,
+          borderWidth: 0,
+        }}
       >
         <Card.Title style={{ color: Colors.text }}> {genre} </Card.Title>
         <Card.Image source={imageSource}></Card.Image>
