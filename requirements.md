@@ -33,3 +33,11 @@ I am crowdsourcing my historical stories and using OpenAI's API to rewrite them 
     - [ ] Ask historians on campus to assist with the data collection
       - [x] Create an Airtable form to collect process stories
 - [ ] Develop Spacy calls for text processing
+- [ ] Find images for stories
+
+### High Priority
+
+- [ ] Add route parameter in StoryCard component to allow users to navigate to a story's profile
+- [ ] Change Story Profile Screen with new UI
+- [ ] Begin brainstorming on collecting data to suggests users stories they are interested in (we can use the tags that associated with each story)
+- [ ] Reorganize users' database for gamifying traits (stories read, day streak, hours spent, eras explored)
