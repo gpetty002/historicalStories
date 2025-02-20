@@ -26,13 +26,15 @@ const FeaturedScreen = ({ route, navigation }) => {
 
   React.useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [route.params]);
 
   const fetchUserData = () => {
-    if (route.params) {
-      setUserData(route.params.route);
-    } else {
-      setUserData({ username: "goofyGoober1", dateLastRead: Date.now() });
+    if (!userData) {
+      if (route.params) {
+        setUserData(route.params.route);
+      } else {
+        setUserData({ username: "goofyGoober1", dateLastRead: Date.now() });
+      }
     }
   };
 

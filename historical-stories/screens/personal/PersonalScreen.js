@@ -16,16 +16,19 @@ const PersonalScreen = ({ route }) => {
 
   React.useEffect(() => {
     fetchUserData();
-  });
+  }, [route.params]);
 
   const fetchUserData = () => {
-    if (route.params) {
-      setUserData(route.params.route);
-    } else {
-      setUserData({
-        email: "fakeEmail@yahoo.com",
-        dateCreated: Date.now().toLocaleDateString(),
-      });
+    if (!userData) {
+      if (route.params) {
+        setUserData(route.params.route);
+      } else {
+        setUserData({
+          email: "fakeEmail@yahoo.com",
+          username: "goofyGoober1",
+          dateCreated: Date.now(),
+        });
+      }
     }
   };
 
