@@ -50,7 +50,7 @@ _Historical Stories is currently moving away from AI generated stories. Instead,
 
    ```
 
-3. Set up environment variables (create a `.env` file in the historical-stories directory and add the necessary environment variables). You should have yourDirectory/historical-stories/.env
+3. Set up environment variables (create a `.env` file in the historical-stories directory and add the necessary environment variables). `You should have yourDirectory/historical-stories/.env`
 
 ```env
 USERNAME=
