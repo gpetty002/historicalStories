@@ -28,46 +28,40 @@ _Historical Stories is currently moving away from AI generated stories. Instead,
 
 ### Steps
 
-1. Clone the repository
+1. Clone the repository and navigate to `historical-stories/`
 
    ```sh
    git clone https://github.com/yourusername/historical-stories-app.git
    cd historical-stories-app
    ```
 
-2. Install dependencies
+2. Run `setup.sh` to complete installation
 
    ```sh
-   npm install
-
-   yarn add express
-
-   yarn add axios
-
-   yarn add mongoose
-
-   yarn add openai
-
+   chmod +x setup.sh
+   ./setup.sh
    ```
 
-3. Set up environment variables (create a `.env` file in the historical-stories directory and add the necessary environment variables). You should have `yourDirectory/historical-stories/.env`
+3. Make sure to update the rest of the environment variables with correct information. You can find the `.env` in `yourDirectory/historical-stories/.
 
-```env
-USERNAME=
-PASSWORD=
-MONGODB_URI=
-LOCAL_HOST=
-OPENAI_API_KEY=
+   ```.env
+   USERNAME=
+   PASSWORD=
+   MONGODB_URI=
+   LOCAL_HOST=
+   OPENAI_API_KEY=
+   ```
 
-```
+4. Start the client
 
-4. Start the development server
+   ```sh
+   npm start
+   ```
 
-```sh
-npm start
-```
-
-5. Follow React Native's instructions for running on [Android](https://reactnative.dev/docs/running-on-device) or [iOS](https://reactnative.dev/docs/running-on-device).
+5. Run the server (_this will still run but access will be limited unless a valid MongoDB URI key is connected and written in the `.env` file_)
+   ```sh
+   npm run server
+   ```
 
 ## Usage
 
