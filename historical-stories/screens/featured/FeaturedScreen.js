@@ -23,9 +23,13 @@ const FeaturedScreen = ({ route, navigation }) => {
   const [modalVisible, setModalVisible] = useState(true);
   const [generated, setGenerated] = useState(false);
   const [routeData, setRouteData] = useState(null);
+  const [storyOfDay, setStoryOfDay] = React.useState(null);
+  const [forYouStories, setForYouStories] = React.useState(null);
 
   React.useEffect(() => {
     fetchUserData();
+    fetchStoryOfDay();
+    fetchForYouStories();
   }, [route.params]);
 
   const fetchUserData = () => {
@@ -38,11 +42,11 @@ const FeaturedScreen = ({ route, navigation }) => {
     }
   };
 
-  const goToStoryOfTheDay = () => {
-    // get story of the day, specify that it should be a story relevant to the day
-    if (!generated) {
-      fetch(`http://localhost:8000/stories/today`, {
-        method: "POST",
+  const fetchStoryOfDay = () => {
+    if (!storyOfDay) {
+      // http://10.0.0.123:8000/login
+      fetch(`http://10.0.0.123:8000/stories/today`, {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,16 +58,23 @@ const FeaturedScreen = ({ route, navigation }) => {
           return response.json();
         })
         .then((data) => {
-          navigation.navigate("StoryProfileScreen", { route: data });
-          setGenerated(true);
-          setRouteData(data);
+          console.log("THIS IS THE DATA");
+          console.log(data);
+          setStoryOfDay(data);
         })
         .catch((error) => {
           console.log("Error getting data through FeaturedScreen", error);
         });
-    } else {
-      navigation.navigate("StoryProfileScreen", { route: routeData });
     }
+  };
+
+  const fetchForYouStories = () => {
+    if (!forYouStories) {
+    }
+  };
+
+  const goToStoryProfile = (story) => {
+    navigation.navigate("StoryProfileScreen", { route: story });
   };
 
   const formattedDate =
@@ -108,7 +119,7 @@ const FeaturedScreen = ({ route, navigation }) => {
       <Text style={styles.headings}>Today in History</Text>
       <View>
         <StoryCard
-          title={"Chimalpahin and the Preservation of Mexica Memory"}
+          title={storyOfDay?.title || "Some important title"}
           imageSource={MayanImg}
           style={styles.fullWidthStoryCard}
         ></StoryCard>
@@ -153,7 +164,7 @@ const FeaturedScreen = ({ route, navigation }) => {
               <Pressable
                 style={styles.storyButton}
                 onPress={() => {
-                  goToStoryOfTheDay();
+                  goToStoryProfile();
                   setModalVisible(!modalVisible);
                 }}
               >
@@ -175,7 +186,7 @@ const FeaturedScreen = ({ route, navigation }) => {
         <Text style={styles.headings}>Your Daily Historical Dosage</Text>
         <StoryCard
           genre={"Today in History"}
-          onPress={goToStoryOfTheDay}
+          onPress={goToStoryProfile}
           color={Colors.active}
           imageSource={MayanImg}
         ></StoryCard>

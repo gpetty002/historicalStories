@@ -1,19 +1,46 @@
 // story.js
-
 const mongoose = require("mongoose");
 
 const storySchema = new mongoose.Schema({
+  content: {
+    type: String,
+  },
+  cultural_focus: {
+    type: String,
+  },
+  genre: {
+    type: String,
+  },
+  period: {
+    type: {
+      start: {
+        type: Number,
+      },
+      end: {
+        type: Number,
+      },
+    },
+  },
   title: {
     type: String,
   },
-  dateGenerated: {
-    type: Date,
-    default: Date.now,
+  themes: {
+    type: [String], // Array of strings
+    default: [], // Default to an empty array
   },
-  storyText: {
-    type: String,
+  source: {
+    type: {
+      author: {
+        type: String,
+      },
+      title: {
+        type: String,
+      },
+      published: {
+        type: Number,
+      },
+    },
   },
-  genres: [String],
 });
 
 module.exports = mongoose.model("Story", storySchema);

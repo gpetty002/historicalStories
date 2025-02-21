@@ -17,6 +17,6 @@ router.post("/signup", UserController.signup);
 router.post("/login", UserController.login);
 router.post("/stories/random", StoryController.storiesRandom);
 router.post("/stories/search", StoryController.storiesSearch);
-router.post("/stories/today", StoryController.storiesToday);
+router.get("/stories/today", StoryController.storiesToday);
 
 module.exports = router;

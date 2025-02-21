@@ -1,6 +1,7 @@
 // StoryController.js
 
 const axios = require("axios");
+const Stories = require("../models/story");
 
 async function getStory(data) {
   try {
@@ -65,12 +66,34 @@ exports.storiesSearch = async (req, res) => {
 };
 
 exports.storiesToday = async (req, res) => {
+  const currentYear = new Date().getFullYear(); // Get current year
+
   try {
-    // use date once we are able to get more stories
-    // we would create another fetch that asks the Python back end for a story that happened today.
-    const story = await getTodayStory();
-    res.json(story);
-  } catch {
+    const closestStory = await Stories.aggregate([
+      {
+        $project: {
+          document: "$$ROOT",
+          storyYear: "$period.end", // Since period.end is a number (year)
+          dateDifference: {
+            $abs: {
+              $subtract: ["$period.end", currentYear], // Find the closest year
+            },
+          },
+        },
+      },
+      { $sort: { dateDifference: 1 } }, // Sort by the smallest year difference
+      { $limit: 1 }, // Get the closest match
+    ]);
+
+    if (closestStory.length > 0) {
+      console.log("Closest story by period.end:", closestStory[0].document);
+      res.json(closestStory[0].document);
+    } else {
+      console.log("No stories found.");
+      res.status(404).json({ message: "No relevant stories found for today." });
+    }
+  } catch (error) {
+    console.error("Error processing today in history story:", error);
     res.status(500).send("Error processing today in history story");
   }
 };
